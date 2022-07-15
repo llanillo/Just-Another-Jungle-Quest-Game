@@ -4,21 +4,25 @@ namespace Justanotherjunglequestgame.Scripts.Player.Controllers.Movement
 {
     public class PlayerMovement : Node
     {
-        [Export] private int Speed = 400;
-        [Export] private int FallSpeed = -200;
-        [Export] private int Gravity = 200;
+        [Export] private float _speed = 600;
+        [Export] private float _jumpSpeed = 1500;
+        [Export] private int _gravity = 7000;
 
-        public Vector2 GetMovement(bool isOnFloor, Vector2 inputVelocity)
+        public Vector2 Velocity { get; set; } = Vector2.Zero;
+
+        public Vector2 GetMoveVelocity(bool isOnFloor, Vector2 direction)
         {
-            var newVelocity = inputVelocity * Speed;
-
-            if (isOnFloor)
+            var output = Velocity;
+            output.x = _speed * direction.x;
+            output.y += _gravity * GetPhysicsProcessDeltaTime();
+            
+            // The player is jumping        
+            if(isOnFloor && direction.y <= -1.0f) 
             {
-                newVelocity.y = FallSpeed;
+                output.y = _jumpSpeed * direction.y;
             }
-        
-            newVelocity.y += Gravity;
-            return newVelocity;
+
+            return output; 
         }
     }
 }
