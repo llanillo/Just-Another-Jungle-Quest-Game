@@ -20,7 +20,7 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
         {
             base._Ready();
             _portraitRect = GetNode<TextureRect>("TextureRect");
-            _textManager = GetNode<TextManager>("TextPanel");
+            _textManager = GetNode<TextManager>("VBoxContainer");
         }
 
         public override void StartDialog(string jsonPath)
