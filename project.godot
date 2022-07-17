@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Just another jungle quest game"
-run/main_scene="res://Scenes/Levels/Main.tscn"
+run/main_scene="res://Assets/Scenes/Levels/Lvl0.tscn"
 config/icon="res://icon.png"
 
 [physics]
