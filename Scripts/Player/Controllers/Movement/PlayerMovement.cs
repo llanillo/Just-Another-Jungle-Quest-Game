@@ -4,9 +4,9 @@ namespace Justanotherjunglequestgame.Scripts.Player.Controllers.Movement
 {
     public class PlayerMovement : Node
     {
-        [Export] private float _speed = 600;
-        [Export] private float _jumpSpeed = 1500;
-        [Export] private int _gravity = 7000;
+        [Export] private float _speed = 300;
+        [Export] private float _jumpSpeed = 1200;
+        [Export] private int _gravity = 4000;
 
         public Vector2 Velocity { get; set; } = Vector2.Zero;
 
