@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Background.png-c15ed350844e3005166469dc522bf7e7.stex"
+path="res://.import/Background.png-09a649b82961a9ee7c658f2cd0e17692.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Jungle/Background.png"
-dest_files=[ "res://.import/Background.png-c15ed350844e3005166469dc522bf7e7.stex" ]
+source_file="res://Assets/Sprites/Jungle/Background/Background.png"
+dest_files=[ "res://.import/Background.png-09a649b82961a9ee7c658f2cd0e17692.stex" ]
 
 [params]
 
