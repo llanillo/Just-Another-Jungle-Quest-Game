@@ -58,6 +58,8 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
                 _portraitRect.Texture = (Texture) GD.Load(PortraitPrefixPath + portraitPath);
                 _textManager.DisplayText((string) dialogue[TextJsonProperty]);
             }
+            
+            QueueFree();
         }
     }
 }

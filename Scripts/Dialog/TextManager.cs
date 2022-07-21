@@ -70,10 +70,7 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
 
         private void HandleCompletedState()
         {
-            /*
-             * Must remove dialog scene from game
-             */
-            throw new NotImplementedException();
+            SwitchState(DialogState.Completed);
         }
 
         private void OnTextTweenTweenCompleted(Object obj, NodePath node)
