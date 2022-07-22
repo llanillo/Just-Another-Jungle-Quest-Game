@@ -9,7 +9,9 @@
 radius = 64.0
 
 [node name="Area2D" type="Area2D"]
+collision_layer = 4
 script = ExtResource( 3 )
+_jsonDialogPath = "res://Assets/Data/Lvl1/WelcomeSign.json"
 _dialogScene = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]

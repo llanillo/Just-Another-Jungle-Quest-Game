@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/Scenes/Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Assets/Scenes/Jungle/NPC/Welcome_Sign.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Sprites/Jungle/Tileset/Tileset.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Sprites/Jungle/Background/Background.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Scenes/Jungle/Levels/Lvl0/NPC/Welcome_Sign.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Sprites/Jungle/Background/Background.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Jungle/Tileset/Tileset.png" type="Texture" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -34,7 +34,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 
 [sub_resource type="TileSet" id=5]
 0/name = "Tileset.png 0"
-0/texture = ExtResource( 3 )
+0/texture = ExtResource( 4 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 32, 32 )
@@ -64,7 +64,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 0/z_index = 0
 1/name = "Tileset.png 1"
-1/texture = ExtResource( 3 )
+1/texture = ExtResource( 4 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 64, 0, 32, 32 )
@@ -94,7 +94,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 1/z_index = 0
 2/name = "Tileset.png 2"
-2/texture = ExtResource( 3 )
+2/texture = ExtResource( 4 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 128, 0, 32, 32 )
@@ -124,7 +124,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 2/z_index = 0
 3/name = "Tileset.png 3"
-3/texture = ExtResource( 3 )
+3/texture = ExtResource( 4 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 64, 64, 32, 32 )
@@ -154,7 +154,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 3/z_index = 0
 4/name = "Tileset.png 4"
-4/texture = ExtResource( 3 )
+4/texture = ExtResource( 4 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
 4/region = Rect2( 64, 128, 32, 32 )
@@ -184,7 +184,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 4/z_index = 0
 5/name = "Tileset.png 5"
-5/texture = ExtResource( 3 )
+5/texture = ExtResource( 4 )
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
 5/region = Rect2( 0, 64, 32, 32 )
@@ -214,7 +214,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 5/z_index = 0
 6/name = "Tileset.png 6"
-6/texture = ExtResource( 3 )
+6/texture = ExtResource( 4 )
 6/tex_offset = Vector2( 0, 0 )
 6/modulate = Color( 1, 1, 1, 1 )
 6/region = Rect2( 0, 128, 32, 32 )
@@ -244,7 +244,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 6/z_index = 0
 7/name = "Tileset.png 7"
-7/texture = ExtResource( 3 )
+7/texture = ExtResource( 4 )
 7/tex_offset = Vector2( 0, 0 )
 7/modulate = Color( 1, 1, 1, 1 )
 7/region = Rect2( 128, 64, 32, 32 )
@@ -274,7 +274,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 7/z_index = 0
 8/name = "Tileset.png 8"
-8/texture = ExtResource( 3 )
+8/texture = ExtResource( 4 )
 8/tex_offset = Vector2( 0, 0 )
 8/modulate = Color( 1, 1, 1, 1 )
 8/region = Rect2( 128, 128, 32, 32 )
@@ -304,7 +304,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 8/z_index = 0
 9/name = "Tileset.png 9"
-9/texture = ExtResource( 3 )
+9/texture = ExtResource( 4 )
 9/tex_offset = Vector2( 0, 0 )
 9/modulate = Color( 1, 1, 1, 1 )
 9/region = Rect2( 0, 192, 32, 32 )
@@ -327,7 +327,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 9/shapes = [  ]
 9/z_index = 0
 10/name = "Tileset.png 10"
-10/texture = ExtResource( 3 )
+10/texture = ExtResource( 4 )
 10/tex_offset = Vector2( 0, 0 )
 10/modulate = Color( 1, 1, 1, 1 )
 10/region = Rect2( 64, 192, 32, 32 )
@@ -350,7 +350,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 10/shapes = [  ]
 10/z_index = 0
 11/name = "Tileset.png 11"
-11/texture = ExtResource( 3 )
+11/texture = ExtResource( 4 )
 11/tex_offset = Vector2( 0, 0 )
 11/modulate = Color( 1, 1, 1, 1 )
 11/region = Rect2( 128, 192, 32, 32 )
@@ -379,7 +379,7 @@ position = Vector2( -8, -200 )
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 544, 526 )
 scale = Vector2( 0.1825, 0.185556 )
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 
 [node name="WelcomeSign" parent="." instance=ExtResource( 2 )]
 position = Vector2( 560, 688 )
@@ -391,5 +391,5 @@ cell_size = Vector2( 32, 32 )
 format = 1
 tile_data = PoolIntArray( 1441793, 0, 0, 1441794, 1, 0, 1441795, 1, 0, 1441796, 1, 0, 1441797, 1, 0, 1441798, 1, 0, 1441799, 1, 0, 1441800, 1, 0, 1441801, 1, 0, 1441802, 1, 0, 1441803, 1, 0, 1441804, 1, 0, 1441805, 1, 0, 1441806, 1, 0, 1441807, 1, 0, 1441808, 1, 0, 1441809, 1, 0, 1441810, 1, 0, 1441811, 1, 0, 1441812, 1, 0, 1441813, 1, 0, 1441814, 1, 0, 1441815, 1, 0, 1441816, 1, 0, 1441817, 7, 0, 1507329, 3, 0, 1507330, 3, 0, 1507331, 3, 0, 1507332, 3, 0, 1507333, 3, 0, 1507334, 3, 0, 1507335, 3, 0, 1507336, 3, 0, 1507337, 3, 0, 1507338, 3, 0, 1507339, 3, 0, 1507340, 3, 0, 1507341, 3, 0, 1507342, 3, 0, 1507343, 3, 0, 1507344, 3, 0, 1507345, 3, 0, 1507346, 3, 0, 1507347, 3, 0, 1507348, 3, 0, 1507349, 3, 0, 1507350, 3, 0, 1507351, 3, 0, 1507352, 3, 0, 1507353, 8, 0, 1507354, 1, 0, 1507355, 1, 0, 1507356, 1, 0, 1507357, 1, 0, 1507358, 1, 0, 1507359, 1, 0, 1507360, 1, 0, 1507361, 1, 0, 1507362, 1, 0, 1507363, 1, 0, 1507364, 2, 0, 1572865, 4, 0, 1572866, 4, 0, 1572867, 4, 0, 1572868, 4, 0, 1572869, 4, 0, 1572870, 4, 0, 1572871, 4, 0, 1572872, 4, 0, 1572873, 4, 0, 1572874, 4, 0, 1572875, 4, 0, 1572876, 4, 0, 1572877, 4, 0, 1572878, 4, 0, 1572879, 4, 0, 1572880, 4, 0, 1572881, 4, 0, 1572882, 4, 0, 1572883, 4, 0, 1572884, 4, 0, 1572885, 4, 0, 1572886, 4, 0, 1572887, 4, 0, 1572888, 4, 0, 1572889, 4, 0, 1572890, 4, 0, 1572891, 4, 0, 1572892, 4, 0, 1572893, 4, 0, 1572894, 4, 0, 1572895, 4, 0, 1572896, 4, 0, 1572897, 4, 0, 1572898, 4, 0, 1572899, 4, 0, 1572900, 4, 0, 1638401, 4, 0, 1638402, 4, 0, 1638403, 4, 0, 1638404, 4, 0, 1638405, 4, 0, 1638406, 4, 0, 1638407, 4, 0, 1638408, 4, 0, 1638409, 4, 0, 1638410, 4, 0, 1638411, 4, 0, 1638412, 4, 0, 1638413, 4, 0, 1638414, 4, 0, 1638415, 4, 0, 1638416, 4, 0, 1638417, 4, 0, 1638418, 4, 0, 1638419, 4, 0, 1638420, 4, 0, 1638421, 4, 0, 1638422, 4, 0, 1638423, 4, 0, 1638424, 4, 0, 1638425, 4, 0, 1638426, 4, 0, 1638427, 4, 0, 1638428, 4, 0, 1638429, 4, 0, 1638430, 4, 0, 1638431, 4, 0, 1638432, 4, 0, 1638433, 4, 0, 1638434, 4, 0, 1638435, 4, 0, 1638436, 4, 0 )
 
-[node name="KinematicBody2D" parent="." instance=ExtResource( 1 )]
+[node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 216, 651 )
