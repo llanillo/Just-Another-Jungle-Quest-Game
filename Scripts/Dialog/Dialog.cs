@@ -1,22 +1,22 @@
 using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
+using Justanotherjunglequestgame.Scripts.Player.Controllers.Input;
 using File = System.IO.File;
 
 namespace Justanotherjunglequestgame.Scripts.Dialog
 {
-    public abstract class Dialog : Control
+    public abstract class Dialog : Node
     {
-        // [Export(PropertyHint.Dir)] public string JsonPath;
+        [Signal] public delegate void DialogEndedSignal();
+        
         private protected const string PortraitPrefixPath = "Assets/Sprites/";
-        private const string JsonPrefixPath = "Assets/Json/";
-
         private protected readonly Queue<Dictionary> DialoguesQueue = new Queue<Dictionary>();
 
         /*
          * Starts the dialog box with the json from the jsonPath
          */
-        public virtual void StartDialog(string jsonPath)
+        public virtual void StartDialog(string jsonPath, PlayerInput playerInput)
         {
             Dictionary dictionary = LoadDialogueFromJson(jsonPath);
             for (var i = 0; i < dictionary.Count; i++)
@@ -26,12 +26,14 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
             }
         }
         
+        /*
+         * Loads the dialogues from the json file and returns it as a dictionary
+         */
         private static Dictionary LoadDialogueFromJson(string jsonPath)
         {
-            var absoluteJsonPath = JsonPrefixPath + jsonPath + ".json";
-            if (!File.Exists(absoluteJsonPath)) return new Dictionary();
+            if (!File.Exists(jsonPath)) return new Dictionary();
 
-            string jsonValues = File.ReadAllText(absoluteJsonPath);
+            string jsonValues = File.ReadAllText(jsonPath);
             JSONParseResult jsonResult = JSON.Parse(jsonValues);
 
             if (jsonResult.Error != Error.Ok)

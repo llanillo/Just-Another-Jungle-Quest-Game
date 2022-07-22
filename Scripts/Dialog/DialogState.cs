@@ -5,6 +5,5 @@
         Ready,
         Reading,
         Finished,
-        Completed
     }
 }

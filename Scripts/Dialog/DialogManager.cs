@@ -1,4 +1,5 @@
 using Godot;
+using Justanotherjunglequestgame.Scripts.Player.Controllers.Input;
 
 namespace Justanotherjunglequestgame.Scripts.Dialog
 {
@@ -19,14 +20,15 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
         public override void _Ready()
         {
             base._Ready();
-            _portraitRect = GetNode<TextureRect>("TextureRect");
-            _textManager = GetNode<TextManager>("VBoxContainer");
+            _portraitRect = GetNode<TextureRect>("Rect/HBox/TextureRect");
+            _textManager = GetNode<TextManager>("Rect/HBox/VBox");
         }
 
-        public override void StartDialog(string jsonPath)
+        public override void StartDialog(string jsonPath, PlayerInput playerInput)
         {
-            base.StartDialog(jsonPath);
-            DisplayText();
+            base.StartDialog(jsonPath, playerInput);
+            playerInput.Connect("AcceptKeyPressedSignal", _textManager, "OnAcceptKeySignal");
+            DisplayText(playerInput);
         }
 
         /*
@@ -34,12 +36,14 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
          * Loads the portrait image and position according to the json values and
          * assigns it to the TextureRect
          */
-        private void DisplayText()
+        private void DisplayText(PlayerInput playerInput)
         {
-            while (_textManager.CurrentState != DialogState.Completed)
+            if (DialoguesQueue.Count <= 0) return;
+            var counter = 0;
+            while (_textManager.CurrentState != DialogState.Finished)
             {
+                GD.Print("Call: " + counter++);
                 if (_textManager.CurrentState != DialogState.Ready) continue;
-                if (DialoguesQueue.Count <= 0) return;
                     
                 var dialogue = DialoguesQueue.Dequeue();
                 var portraitPath = (string) dialogue[PortraitJsonProperty] + PortraitExtension;
@@ -58,7 +62,9 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
                 _portraitRect.Texture = (Texture) GD.Load(PortraitPrefixPath + portraitPath);
                 _textManager.DisplayText((string) dialogue[TextJsonProperty]);
             }
-            
+
+            playerInput.Disconnect("OnAcceptKeyPressedSignal", _textManager, "OnAcceptKeySignal");
+            EmitSignal("DialogEndedSignal");
             QueueFree();
         }
     }
