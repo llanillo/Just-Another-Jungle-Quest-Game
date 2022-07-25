@@ -1,24 +1,25 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
 using Godot;
 using Godot.Collections;
-using Justanotherjunglequestgame.Scripts.Player.Controllers.Input;
-using File = System.IO.File;
+using File = Godot.File;
+using Object = Godot.Object;
 
 namespace Justanotherjunglequestgame.Scripts.Dialog
 {
     public abstract class Dialog : Node
     {
-        [Signal] public delegate void DialogEndedSignal();
-        
-        private protected const string PortraitPrefixPath = "Assets/Sprites/";
+        private protected const string PortraitSpritePath = "res://Assets/Sprites/Dialog/";
         private protected readonly Queue<Dictionary> DialoguesQueue = new Queue<Dictionary>();
 
         /*
-         * Starts the dialog box with the json from the jsonPath
+         * Must be called from any dialog scene instance
+         *  to start the dialog box with the json 
          */
-        public virtual void StartDialog(string jsonPath, PlayerInput playerInput)
+        public virtual void StartDialog(string jsonPath, Object playerInput)
         {
-            Dictionary dictionary = LoadDialogueFromJson(jsonPath);
+            var dictionary = LoadDialogueFromJson(jsonPath);
             for (var i = 0; i < dictionary.Count; i++)
             {
                 var dialogue = dictionary[i.ToString()] as Dictionary;
@@ -31,18 +32,21 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
          */
         private static Dictionary LoadDialogueFromJson(string jsonPath)
         {
-            if (!File.Exists(jsonPath)) return new Dictionary();
+            var file = new File();
+            if (!file.FileExists(jsonPath)) throw new FileNotFoundException();
 
-            string jsonValues = File.ReadAllText(jsonPath);
+            file.Open(jsonPath, File.ModeFlags.Read);
+            var jsonValues = file.GetAsText();
+            file.Close();
+            
             JSONParseResult jsonResult = JSON.Parse(jsonValues);
 
-            if (jsonResult.Error != Error.Ok)
+            if (jsonResult.Error == Error.Ok)
             {
                 return jsonResult.Result as Dictionary;
             }
 
-            GD.Print(jsonPath + "can't be parsed to Json\nError: " + jsonResult.ErrorString);
-            return new Dictionary();
+            throw new ApplicationException("Could not parsed JSON");
         }
     }
 }

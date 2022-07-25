@@ -1,5 +1,8 @@
+using System;
 using Godot;
 using Justanotherjunglequestgame.Scripts.Player.Controllers.Input;
+using Justanotherjunglequestgame.Scripts.Player.Controllers.Manager;
+using Object = Godot.Object;
 
 namespace Justanotherjunglequestgame.Scripts.Dialog
 {
@@ -12,7 +15,9 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
 
         private const int LeftPosition = 0;
         private const int RightPosition = 1;
-        
+
+        private PlayerInput _playerInput;
+        private HBoxContainer _hBoxDialogContainer;
         private TextureRect _portraitRect;
         private TextManager _textManager;
         
@@ -20,15 +25,22 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
         public override void _Ready()
         {
             base._Ready();
+            _hBoxDialogContainer = GetNode<HBoxContainer>("Rect/HBox/");
             _portraitRect = GetNode<TextureRect>("Rect/HBox/TextureRect");
             _textManager = GetNode<TextManager>("Rect/HBox/VBox");
+            
+            _textManager.NextDialogFunc = GD.FuncRef(this, "ShowNextDialog");
         }
 
-        public override void StartDialog(string jsonPath, PlayerInput playerInput)
+        public override void StartDialog(string jsonPath, Object playerInput)
         {
             base.StartDialog(jsonPath, playerInput);
-            playerInput.Connect("AcceptKeyPressedSignal", _textManager, "OnAcceptKeySignal");
-            DisplayText(playerInput);
+
+            _playerInput = playerInput as PlayerInput ?? throw new NullReferenceException("Player reference null");
+            _playerInput.CanMove = false;
+            _playerInput.Connect("AcceptKeyPressedSignal", _textManager, "OnContinueDialogSignal");
+            
+            ShowNextDialog();
         }
 
         /*
@@ -36,36 +48,33 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
          * Loads the portrait image and position according to the json values and
          * assigns it to the TextureRect
          */
-        private void DisplayText(PlayerInput playerInput)
+        private void ShowNextDialog()
         {
-            if (DialoguesQueue.Count <= 0) return;
-            var counter = 0;
-            while (_textManager.CurrentState != DialogState.Finished)
+            if (DialoguesQueue.Count > 0)
             {
-                GD.Print("Call: " + counter++);
-                if (_textManager.CurrentState != DialogState.Ready) continue;
-                    
                 var dialogue = DialoguesQueue.Dequeue();
-                var portraitPath = (string) dialogue[PortraitJsonProperty] + PortraitExtension;
-                    
+                var portraitName = (string) dialogue[PortraitJsonProperty] + PortraitExtension;
+                        
                 switch (int.Parse((string) dialogue[PositionJsonProperty]))
                 {
                     case 0:
-                        MoveChild(_portraitRect, LeftPosition);
+                        _hBoxDialogContainer.MoveChild(_portraitRect, LeftPosition);
                         break;
                     case 1:
-                        MoveChild(_portraitRect, RightPosition);
+                        _hBoxDialogContainer.MoveChild(_portraitRect, RightPosition);
                         break;
                 }
-                    
+                        
                 _portraitRect.Visible = true;
-                _portraitRect.Texture = (Texture) GD.Load(PortraitPrefixPath + portraitPath);
+                _portraitRect.Texture = (Texture) GD.Load(PortraitSpritePath + portraitName);
                 _textManager.DisplayText((string) dialogue[TextJsonProperty]);
             }
-
-            playerInput.Disconnect("OnAcceptKeyPressedSignal", _textManager, "OnAcceptKeySignal");
-            EmitSignal("DialogEndedSignal");
-            QueueFree();
+            else
+            {
+                _playerInput.CanMove = true;
+                _playerInput.Disconnect("AcceptKeyPressedSignal", _textManager, "OnContinueDialogSignal");
+                QueueFree();
+            }
         }
     }
 }

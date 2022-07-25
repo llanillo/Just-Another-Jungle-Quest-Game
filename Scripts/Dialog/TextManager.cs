@@ -12,7 +12,8 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
         
         private const string PercentProperty = "percent_visible";
 
-        public DialogState CurrentState { get; private set; } = DialogState.Ready;
+        private DialogState CurrentState { get; set; } = DialogState.Ready;
+        public FuncRef NextDialogFunc { get; set; }
 
         private AudioStreamPlayer _audioStreamPlayer;
         private TextureButton _continueButton;
@@ -25,28 +26,26 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
             _audioStreamPlayer = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
             _continueButton = GetNode<TextureButton>("ContinueButton");
             _textLabel = GetNode<RichTextLabel>( "RichTextLabel");
-            
             _textTween = GetNode<Tween>("Tween");
+            
             _textTween.Connect("tween_completed", this, "OnTextTweenCompleted");
-            _continueButton.Connect("pressed", this, "OnContinueButtonPressed");
+            _continueButton.Connect("pressed", this, "OnContinueDialogSignal");
             _continueButton.Visible = false;
         }
 
         /*
-         * Called on accept key pressed signal from player input
+         * Handle the dialog next step depending of current dialog state.
+         * It is called from player action key or continue button pressed signals.
          */
-        public void OnAcceptKeySignal()
+        public void OnContinueDialogSignal()
         {
             switch (CurrentState)
             {
                 case DialogState.Reading:
-                    OnTextTweenTweenCompleted(null, null);
+                    OnTextTweenCompleted(null, null);
                     break;
                 case DialogState.Ready:
                     HandleReadyState();
-                    break;
-                case DialogState.Finished:
-                    HandleFinishedState();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -54,30 +53,20 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
         }
         
         /*
-         * Removes dialog from scene
-         */
-        private void HandleFinishedState()
-        {
-            SwitchState(DialogState.Finished);
-            GD.Print("Current state is FINISHED"); }
-
-        /*
-         * Prepares the dialog for the next text
+         * Callbacks the dialog manager to show the next dialogue if there is any
          */
         private void HandleReadyState()
         {
-            GD.Print("Current state is READY");
             _textLabel.Text = "";
-            SwitchState(DialogState.Ready);
+            NextDialogFunc.CallFunc();
+            SwitchState(DialogState.Reading);
         }
 
         /*
          * Completes the tween animation showing the full text
-         * and switch dialog state to ready
          */
-        private void OnTextTweenTweenCompleted(Object obj, NodePath node)
+        private void OnTextTweenCompleted(Object obj, NodePath node)
         {
-            GD.Print("On text tween completed call");
             SwitchState(DialogState.Ready);
             _textLabel.PercentVisible = FinalValue;
             _audioStreamPlayer.StreamPaused = true;
@@ -86,11 +75,10 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
         }
 
         /*
-         * 
+         * Assigns and display the the text in the dialog box 
          */
         public void DisplayText(string text)
         {
-            GD.Print("Display text");
             SwitchState(DialogState.Reading);
             _audioStreamPlayer.StreamPaused = false;
             _continueButton.Visible = false;
@@ -102,16 +90,7 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
         }
 
         /*
-         * 
-         */
-        private void OnContinueButtonPressed()
-        {
-            GD.Print("On continue button pressed call");
-            OnAcceptKeySignal();
-        }
-
-        /*
-         * 
+         * Switch current dialog state
          */
         private void SwitchState(DialogState nextState)
         {
