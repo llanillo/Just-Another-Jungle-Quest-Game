@@ -374,7 +374,6 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 11/z_index = 0
 
 [node name="World" type="Node2D"]
-position = Vector2( -8, -200 )
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 544, 526 )
