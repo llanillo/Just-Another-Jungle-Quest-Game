@@ -14,6 +14,11 @@ config/name="Just another jungle quest game"
 run/main_scene="res://Assets/Scenes/Jungle/Levels/Lvl0/Lvl0.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+EventManager="*res://Scripts/System/EventManager.cs"
+PlayerStatus="*res://Scripts/System/PlayerStatus.cs"
+
 [global]
 
 layer=false

@@ -1,8 +1,5 @@
-using System;
 using Godot;
-using Justanotherjunglequestgame.Scripts.Player.Controllers.Input;
-using Justanotherjunglequestgame.Scripts.Player.Controllers.Manager;
-using Object = Godot.Object;
+using Justanotherjunglequestgame.Scripts.System;
 
 namespace Justanotherjunglequestgame.Scripts.Dialog
 {
@@ -16,7 +13,9 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
         private const int LeftPosition = 0;
         private const int RightPosition = 1;
 
-        private PlayerInput _playerInput;
+        // private PlayerInput _playerInput;
+        private PlayerStatus _playerStatus;
+        private EventManager _eventManager;
         private HBoxContainer _hBoxDialogContainer;
         private TextureRect _portraitRect;
         private TextManager _textManager;
@@ -28,17 +27,20 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
             _hBoxDialogContainer = GetNode<HBoxContainer>("Rect/HBox/");
             _portraitRect = GetNode<TextureRect>("Rect/HBox/TextureRect");
             _textManager = GetNode<TextManager>("Rect/HBox/VBox");
+            _playerStatus = GetNode<PlayerStatus>("/root/PlayerStatus");
+            _eventManager = GetNode<EventManager>("/root/EventManager");
             
             _textManager.NextDialogFunc = GD.FuncRef(this, "ShowNextDialog");
         }
 
-        public override void StartDialog(string jsonPath, Object playerInput)
+        public override void StartDialog(string jsonPath)
         {
-            base.StartDialog(jsonPath, playerInput);
+            base.StartDialog(jsonPath);
 
-            _playerInput = playerInput as PlayerInput ?? throw new NullReferenceException("Player reference null");
-            _playerInput.CanMove = false;
-            _playerInput.Connect("AcceptKeyPressedSignal", _textManager, "OnContinueDialogSignal");
+            if ((_eventManager is null) || (_playerStatus is null)) return;
+
+            _playerStatus.CanMove = false;
+            _eventManager.Connect(EventManager.AcceptKeySignal, _textManager, TextManager.NextTextSignal);
             
             ShowNextDialog();
         }
@@ -71,8 +73,8 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
             }
             else
             {
-                _playerInput.CanMove = true;
-                _playerInput.Disconnect("AcceptKeyPressedSignal", _textManager, "OnContinueDialogSignal");
+                _playerStatus.CanMove = true;
+                _eventManager.Disconnect(EventManager.AcceptKeySignal, _textManager, TextManager.NextTextSignal);
                 QueueFree();
             }
         }

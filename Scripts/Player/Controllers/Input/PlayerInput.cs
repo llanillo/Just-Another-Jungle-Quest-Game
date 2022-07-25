@@ -6,22 +6,26 @@ namespace Justanotherjunglequestgame.Scripts.Player.Controllers.Input
 {
     public class PlayerInput : Node
     {
-        [Signal] public delegate void ActionKeyPressedSignal();
-        [Signal] public delegate void AcceptKeyPressedSignal();
-
         public Vector2 InputVelocity { get; private set; }
         public bool CanMove { get; set; } = true;
+
+        private EventManager _eventManager;
+        
+        public override void _Ready()
+        {
+            _eventManager = GetNode<EventManager>("/root/EventManager");
+        }
 
         public override void _Input(InputEvent @event)
         {
             if (@event.IsActionPressed("ui_action"))
             {
-                EmitSignal("ActionKeyPressedSignal");
+                _eventManager.EmitSignal(EventManager.ActionKeySignal);
             }
 
             if (@event.IsActionPressed("ui_accept"))
             {
-                EmitSignal("AcceptKeyPressedSignal");
+                _eventManager.EmitSignal(EventManager.AcceptKeySignal);
             }
         }
 

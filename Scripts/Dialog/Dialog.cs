@@ -4,7 +4,6 @@ using System.IO;
 using Godot;
 using Godot.Collections;
 using File = Godot.File;
-using Object = Godot.Object;
 
 namespace Justanotherjunglequestgame.Scripts.Dialog
 {
@@ -17,7 +16,7 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
          * Must be called from any dialog scene instance
          *  to start the dialog box with the json 
          */
-        public virtual void StartDialog(string jsonPath, Object playerInput)
+        public virtual void StartDialog(string jsonPath)
         {
             var dictionary = LoadDialogueFromJson(jsonPath);
             for (var i = 0; i < dictionary.Count; i++)

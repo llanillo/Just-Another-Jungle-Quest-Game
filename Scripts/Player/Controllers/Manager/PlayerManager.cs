@@ -7,22 +7,22 @@ namespace Justanotherjunglequestgame.Scripts.Player.Controllers.Manager
 {
     public class PlayerManager : KinematicBody2D
     {
-        private PlayerAnimation _playerAnimation;
-        private PlayerMovement _playerMovement;
+        public PlayerAnimation PlayerAnimation { get; private set; }
+        public PlayerMovement PlayerMovement { get; private set; }
         public PlayerInput PlayerInput { get; private set; }
     
         public override void _Ready()
         {
-            _playerAnimation = GetNode<PlayerAnimation>("Controllers/PlayerAnimation");
-            _playerMovement = GetNode<PlayerMovement>("Controllers/PlayerMovement");
+            PlayerAnimation = GetNode<PlayerAnimation>("Controllers/PlayerAnimation");
+            PlayerMovement = GetNode<PlayerMovement>("Controllers/PlayerMovement");
             PlayerInput = GetNode<PlayerInput>("Controllers/PlayerInput");
         }
 
         public override void _PhysicsProcess(float delta)
         {
             var inputVelocity =  PlayerInput.ProcessInput();
-            _playerAnimation.PlayAnimations(IsOnFloor(), inputVelocity); // Plays the corresponding animation
-            _playerMovement.Move(IsOnFloor(), inputVelocity);
+            PlayerAnimation.PlayAnimations(IsOnFloor(), inputVelocity); // Plays the corresponding animation
+            PlayerMovement.Move(IsOnFloor(), inputVelocity);
         }
 
         public override void _Process(float delta)

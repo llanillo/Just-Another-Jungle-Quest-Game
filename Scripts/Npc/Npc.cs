@@ -10,13 +10,17 @@ namespace Justanotherjunglequestgame.Scripts.NPC
         [Export(PropertyHint.File)] private string _jsonDialogPath;
         [Export] private PackedScene _dialogScene;
 
-        private const string ActionSignalName = "ActionKeyPressedSignal";
+        private const string ActionSignalMethod = "OnActionKeySignal";
+        
+        private EventManager _eventManager;
         private Sprite _actionKeySprite;
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
         {
+            _eventManager = GetNode<EventManager>("/root/EventManager");
             _actionKeySprite = GetNode<Sprite>("Sprite_ActionKey");
+            
             _actionKeySprite.Visible = false;
 
             Connect("body_entered", this, "OnBodyEntered");
@@ -31,7 +35,7 @@ namespace Justanotherjunglequestgame.Scripts.NPC
             if (!(body is PlayerManager playerManager)) return;
             
             _actionKeySprite.Visible = true;
-            playerManager.PlayerInput.Connect(ActionSignalName, this, "OnActionKeySignal", new Array { playerManager });
+            _eventManager.Connect(EventManager.ActionKeySignal, this, ActionSignalMethod);
         }
 
         /*
@@ -42,19 +46,19 @@ namespace Justanotherjunglequestgame.Scripts.NPC
             if (!(body is PlayerManager playerManager)) return;
             
             _actionKeySprite.Visible = false;
-            playerManager.PlayerInput.Disconnect(ActionSignalName, this, "OnActionKeySignal");
+            _eventManager.Disconnect(EventManager.ActionKeySignal, this, ActionSignalMethod);
         }
 
         /*
          * Called on action key pressed signal from player input
          */
-        private void OnActionKeySignal(PlayerManager playerManager)
+        private void OnActionKeySignal()
         {
             if (!(_dialogScene?.Instance() is DialogManager dialogInstance)) return;
             if (!new File().FileExists(_jsonDialogPath)) return;
             
             GetTree().Root.AddChild(dialogInstance);
-            dialogInstance.StartDialog(_jsonDialogPath, playerManager.PlayerInput);
+            dialogInstance.StartDialog(_jsonDialogPath);
         }
     }
 }

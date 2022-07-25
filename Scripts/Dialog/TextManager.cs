@@ -11,6 +11,7 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
         private const float FinalValue = 1.0f;
         
         private const string PercentProperty = "percent_visible";
+        public const string NextTextSignal = "OnContinueActionSignal";
 
         private DialogState CurrentState { get; set; } = DialogState.Ready;
         public FuncRef NextDialogFunc { get; set; }
@@ -37,7 +38,7 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
          * Handle the dialog next step depending of current dialog state.
          * It is called from player action key or continue button pressed signals.
          */
-        public void OnContinueDialogSignal()
+        public void OnContinueActionSignal()
         {
             switch (CurrentState)
             {
