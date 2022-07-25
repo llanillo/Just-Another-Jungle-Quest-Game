@@ -1,4 +1,5 @@
 using Godot;
+using Justanotherjunglequestgame.Scripts.Player.Controllers.Manager;
 using static Godot.Input;
 
 namespace Justanotherjunglequestgame.Scripts.Player.Controllers.Input
@@ -50,7 +51,8 @@ namespace Justanotherjunglequestgame.Scripts.Player.Controllers.Input
              {
                  inputVelocity.y = -1;
              }
-             
+
+             InputVelocity = inputVelocity;
              return inputVelocity;
         }
     }
