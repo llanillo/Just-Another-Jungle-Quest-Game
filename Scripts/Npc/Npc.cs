@@ -9,7 +9,7 @@ namespace Justanotherjunglequestgame.Scripts.NPC
     {
         [Export(PropertyHint.File)] private string _jsonDialogPath;
         [Export] private PackedScene _dialogScene;
-        
+
         private const string ActionSignalName = "ActionKeyPressedSignal";
         private Sprite _actionKeySprite;
 
@@ -31,9 +31,7 @@ namespace Justanotherjunglequestgame.Scripts.NPC
             if (!(body is PlayerManager playerManager)) return;
             
             _actionKeySprite.Visible = true;
-            var algo = playerManager.PlayerInput.Connect(ActionSignalName, this, "OnActionKeySignal", new Array { playerManager });
-            GD.Print("Entro");
-            GD.Print(algo);
+            playerManager.PlayerInput.Connect(ActionSignalName, this, "OnActionKeySignal", new Array { playerManager });
         }
 
         /*
@@ -55,14 +53,8 @@ namespace Justanotherjunglequestgame.Scripts.NPC
             if (!(_dialogScene?.Instance() is DialogManager dialogInstance)) return;
             if (!new File().FileExists(_jsonDialogPath)) return;
             
-            playerManager.PlayerInput.CanMove = false;
             GetTree().Root.AddChild(dialogInstance);
             dialogInstance.StartDialog(_jsonDialogPath, playerManager.PlayerInput);
-        }
-
-        private void OnDialogEndedSignal(PlayerManager playerManager)
-        {
-            playerManager.PlayerInput.CanMove = true;
         }
     }
 }
