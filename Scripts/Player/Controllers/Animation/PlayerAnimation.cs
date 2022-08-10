@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace Justanotherjunglequestgame.Scripts.Player.Controllers.Animation
@@ -14,7 +15,7 @@ namespace Justanotherjunglequestgame.Scripts.Player.Controllers.Animation
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
         {
-            _animatedSprite = GetNode<AnimatedSprite>("../../AnimatedSprite");
+            _animatedSprite = GetNode<AnimatedSprite>("../../AnimatedSprite") ?? throw new ArgumentNullException(nameof(_animatedSprite));
         }
 
         public void PlayAnimations(bool isOnFloor, Vector2 inputVelocity)

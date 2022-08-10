@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Justanotherjunglequestgame.Scripts.System;
 
@@ -24,11 +25,11 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
         public override void _Ready()
         {
             base._Ready();
-            _hBoxDialogContainer = GetNode<HBoxContainer>("Rect/HBox/");
-            _portraitRect = GetNode<TextureRect>("Rect/HBox/TextureRect");
-            _textManager = GetNode<TextManager>("Rect/HBox/VBox");
-            _playerStatus = GetNode<PlayerStatus>("/root/PlayerStatus");
-            _eventManager = GetNode<EventManager>("/root/EventManager");
+            _hBoxDialogContainer = GetNode<HBoxContainer>("Rect/HBox/") ?? throw new ArgumentNullException(nameof(_hBoxDialogContainer));
+            _portraitRect = GetNode<TextureRect>("Rect/HBox/TextureRect") ?? throw new ArgumentNullException(nameof(_portraitRect));
+            _textManager = GetNode<TextManager>("Rect/HBox/VBox") ?? throw new ArgumentNullException(nameof(_textManager));
+            _playerStatus = GetNode<PlayerStatus>("/root/PlayerStatus") ?? throw new ArgumentNullException(nameof(_playerStatus));
+            _eventManager = GetNode<EventManager>("/root/EventManager") ?? throw new ArgumentNullException(nameof(_eventManager));
             
             _textManager.NextDialogFunc = GD.FuncRef(this, "ShowNextDialog");
         }

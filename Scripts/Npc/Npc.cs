@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Godot.Collections;
 using Justanotherjunglequestgame.Scripts.Dialog;
@@ -18,8 +19,8 @@ namespace Justanotherjunglequestgame.Scripts.NPC
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
         {
-            _eventManager = GetNode<EventManager>("/root/EventManager");
-            _actionKeySprite = GetNode<Sprite>("Sprite_ActionKey");
+            _eventManager = GetNode<EventManager>("/root/EventManager") ?? throw new ArgumentNullException(nameof(_eventManager));
+            _actionKeySprite = GetNode<Sprite>("Sprite_ActionKey") ?? throw new ArgumentNullException(nameof(_actionKeySprite));
             
             _actionKeySprite.Visible = false;
 

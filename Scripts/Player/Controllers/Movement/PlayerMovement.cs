@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace Justanotherjunglequestgame.Scripts.Player.Controllers.Movement
@@ -16,7 +17,7 @@ namespace Justanotherjunglequestgame.Scripts.Player.Controllers.Movement
 
         public override void _Ready()
         {
-            _kinematicBody = GetNode<KinematicBody2D>("../../../Player");
+            _kinematicBody = GetNode<KinematicBody2D>("../../../Player") ?? throw new ArgumentNullException(nameof(_kinematicBody));
         }
 
         public void Move(bool isOnFloor, Vector2 direction)

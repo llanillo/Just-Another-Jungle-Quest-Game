@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Justanotherjunglequestgame.Scripts.Player.Controllers.Manager;
 using static Godot.Input;
@@ -13,7 +14,7 @@ namespace Justanotherjunglequestgame.Scripts.Player.Controllers.Input
         
         public override void _Ready()
         {
-            _eventManager = GetNode<EventManager>("/root/EventManager");
+            _eventManager = GetNode<EventManager>("/root/EventManager") ?? throw new ArgumentNullException(nameof(_eventManager));
         }
 
         public override void _Input(InputEvent @event)

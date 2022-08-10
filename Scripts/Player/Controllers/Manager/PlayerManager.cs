@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Justanotherjunglequestgame.Scripts.Player.Controllers.Animation;
 using Justanotherjunglequestgame.Scripts.Player.Controllers.Input;
@@ -13,9 +14,9 @@ namespace Justanotherjunglequestgame.Scripts.Player.Controllers.Manager
     
         public override void _Ready()
         {
-            PlayerAnimation = GetNode<PlayerAnimation>("Controllers/PlayerAnimation");
-            PlayerMovement = GetNode<PlayerMovement>("Controllers/PlayerMovement");
-            PlayerInput = GetNode<PlayerInput>("Controllers/PlayerInput");
+            PlayerAnimation = GetNode<PlayerAnimation>("Controllers/PlayerAnimation") ?? throw new ArgumentNullException(nameof(PlayerAnimation));
+            PlayerMovement = GetNode<PlayerMovement>("Controllers/PlayerMovement") ?? throw new ArgumentNullException(nameof(PlayerMovement));
+            PlayerInput = GetNode<PlayerInput>("Controllers/PlayerInput") ?? throw new  ArgumentNullException(nameof(PlayerInput));
         }
 
         public override void _PhysicsProcess(float delta)

@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace Justanotherjunglequestgame.Scripts.Dialog
@@ -8,7 +9,7 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
     
         public override void _Ready()
         {
-            var animationPlayer = GetChild<AnimationPlayer>(0);
+            var animationPlayer = GetChild<AnimationPlayer>(0) ?? throw new ArgumentNullException();
             animationPlayer.Play(BounceAnimation);
         }
 

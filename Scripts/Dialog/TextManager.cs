@@ -24,10 +24,10 @@ namespace Justanotherjunglequestgame.Scripts.Dialog
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
         {
-            _audioStreamPlayer = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
-            _continueButton = GetNode<TextureButton>("ContinueButton");
-            _textLabel = GetNode<RichTextLabel>( "RichTextLabel");
-            _textTween = GetNode<Tween>("Tween");
+            _audioStreamPlayer = GetNode<AudioStreamPlayer>("AudioStreamPlayer") ?? throw new ArgumentNullException(nameof(_audioStreamPlayer));
+            _continueButton = GetNode<TextureButton>("ContinueButton") ?? throw new ArgumentNullException(nameof(_continueButton));
+            _textLabel = GetNode<RichTextLabel>( "RichTextLabel") ?? throw new ArgumentNullException(nameof(_textLabel));
+            _textTween = GetNode<Tween>("Tween") ?? throw new ArgumentNullException(nameof(_textTween));
             
             _textTween.Connect("tween_completed", this, "OnTextTweenCompleted");
             _continueButton.Connect("pressed", this, "OnContinueDialogSignal");
