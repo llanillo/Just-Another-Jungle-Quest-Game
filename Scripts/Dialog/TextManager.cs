@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Object = Godot.Object;
 
-namespace Justanotherjunglequestgame.Scripts.Dialog
+namespace JustAnotherJungleQuestGame.Dialog
 {
     public class TextManager : Control
     {

@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace Justanotherjunglequestgame.Scripts.Player.Controllers.Movement
+namespace JustAnotherJungleQuestGame.Player.Controllers.Movement
 {
     public class PlayerMovement : Node
     {

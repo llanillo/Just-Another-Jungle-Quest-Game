@@ -1,8 +1,8 @@
 using System;
 using Godot;
-using Justanotherjunglequestgame.Scripts.System;
+using JustAnotherJungleQuestGame.System;
 
-namespace Justanotherjunglequestgame.Scripts.Dialog
+namespace JustAnotherJungleQuestGame.Dialog
 {
     public class DialogManager : Dialog
     {

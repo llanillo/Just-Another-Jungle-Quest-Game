@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace Justanotherjunglequestgame.Scripts.Dialog
+namespace JustAnotherJungleQuestGame.Dialog
 {
     public class ContinueButton : TextureButton
     {

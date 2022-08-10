@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Dialog/TextManager.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/Dialog/ContinueButton.cs" type="Script" id=2]
 [ext_resource path="res://Scripts/Dialog/DialogManager.cs" type="Script" id=3]
 [ext_resource path="res://Assets/Sprites/Interacion/Dialog/Arrow.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Sprites/Dialog/Background.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Fonts/Roboto/Roboto-Black.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="DynamicFont" id=3]
@@ -53,7 +52,6 @@ margin_left = -488.0
 margin_top = 40.0
 margin_right = 488.0
 margin_bottom = 248.0
-texture = ExtResource( 5 )
 
 [node name="HBox" type="HBoxContainer" parent="Rect"]
 anchor_right = 1.0

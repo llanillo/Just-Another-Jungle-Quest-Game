@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Justanotherjunglequestgame.Scripts.Enemy
+namespace JustAnotherJungleQuestGame.Enemy
 {
     public class Enemy : KinematicBody2D
     {

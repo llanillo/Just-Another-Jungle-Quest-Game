@@ -1,4 +1,4 @@
-﻿namespace Justanotherjunglequestgame.Scripts.Dialog
+﻿namespace JustAnotherJungleQuestGame.Dialog
 {
     public enum DialogState
     {

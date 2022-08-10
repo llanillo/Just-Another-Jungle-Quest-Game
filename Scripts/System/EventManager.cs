@@ -1,11 +1,13 @@
 using Godot;
-using System;
 
-public class EventManager : Node
+namespace JustAnotherJungleQuestGame.System
 {
-    [Signal] public delegate void ActionKeyPressedSignal();
-    [Signal] public delegate void AcceptKeyPressedSignal();
+    public class EventManager : Node
+    {
+        [Signal] public delegate void ActionKeyPressedSignal();
+        [Signal] public delegate void AcceptKeyPressedSignal();
 
-    public const string AcceptKeySignal = "AcceptKeyPressedSignal";
-    public const string ActionKeySignal = "ActionKeyPressedSignal";
+        public const string AcceptKeySignal = "AcceptKeyPressedSignal";
+        public const string ActionKeySignal = "ActionKeyPressedSignal";
+    }
 }

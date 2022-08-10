@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace Justanotherjunglequestgame.Scripts.System
+namespace JustAnotherJungleQuestGame.System
 {
     public class PlayerStatus : Node
     {

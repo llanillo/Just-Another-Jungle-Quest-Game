@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace Justanotherjunglequestgame.Scripts.Player.Controllers.Animation
+namespace JustAnotherJungleQuestGame.Player.Controllers.Animation
 {
     public class PlayerAnimation : Node
     {

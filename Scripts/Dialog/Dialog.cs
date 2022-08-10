@@ -5,7 +5,7 @@ using Godot;
 using Godot.Collections;
 using File = Godot.File;
 
-namespace Justanotherjunglequestgame.Scripts.Dialog
+namespace JustAnotherJungleQuestGame.Dialog
 {
     public abstract class Dialog : Node
     {

@@ -1,17 +1,17 @@
 using System;
 using Godot;
-using Justanotherjunglequestgame.Scripts.Player.Controllers.Animation;
-using Justanotherjunglequestgame.Scripts.Player.Controllers.Input;
-using Justanotherjunglequestgame.Scripts.Player.Controllers.Movement;
+using JustAnotherJungleQuestGame.Player.Controllers.Animation;
+using JustAnotherJungleQuestGame.Player.Controllers.Input;
+using JustAnotherJungleQuestGame.Player.Controllers.Movement;
 
-namespace Justanotherjunglequestgame.Scripts.Player.Controllers.Manager
+namespace JustAnotherJungleQuestGame.Player.Controllers.Manager
 {
     public class PlayerManager : KinematicBody2D
     {
         public PlayerAnimation PlayerAnimation { get; private set; }
         public PlayerMovement PlayerMovement { get; private set; }
         public PlayerInput PlayerInput { get; private set; }
-    
+        
         public override void _Ready()
         {
             PlayerAnimation = GetNode<PlayerAnimation>("Controllers/PlayerAnimation") ?? throw new ArgumentNullException(nameof(PlayerAnimation));

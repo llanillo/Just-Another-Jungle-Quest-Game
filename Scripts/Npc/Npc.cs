@@ -1,10 +1,10 @@
 using System;
 using Godot;
-using Godot.Collections;
-using Justanotherjunglequestgame.Scripts.Dialog;
-using Justanotherjunglequestgame.Scripts.Player.Controllers.Manager;
+using JustAnotherJungleQuestGame.Dialog;
+using JustAnotherJungleQuestGame.Player.Controllers.Manager;
+using JustAnotherJungleQuestGame.System;
 
-namespace Justanotherjunglequestgame.Scripts.NPC
+namespace JustAnotherJungleQuestGame.Npc
 {
     public class Npc : Area2D
     {

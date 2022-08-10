@@ -1,9 +1,9 @@
 using System;
 using Godot;
-using Justanotherjunglequestgame.Scripts.Player.Controllers.Manager;
+using JustAnotherJungleQuestGame.System;
 using static Godot.Input;
 
-namespace Justanotherjunglequestgame.Scripts.Player.Controllers.Input
+namespace JustAnotherJungleQuestGame.Player.Controllers.Input
 {
     public class PlayerInput : Node
     {
